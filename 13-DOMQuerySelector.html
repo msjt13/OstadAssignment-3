@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Query Selector</title>
+    </head>
+    <body>
+        <p class="highlight">Paragraph 1 with class "highlight"</p>
+        <p>Paragraph 2 without any class</p>
+        <p class="highlight">Paragraph 3 with class "highlight"</p>
+        <p id="specialParagraph">Paragraph 4 with ID "specialParagraph"</p>
+    </body>
+</html>
+
+<script>
+    const paragraphs = document.querySelectorAll('.highlight');
+
+    paragraphs.forEach(function (paragraph) {
+        paragraph.style.color = 'red';
+    });
+</script>

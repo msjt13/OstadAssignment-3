@@ -1,0 +1,21 @@
+<h3>Opening a new window with example.com url</h3>
+<strong>Make sure pop up is not blocked</strong>
+
+<script>
+    /*
+    a. Here's a JavaScript function that opens a new window with a specified URL and dimensions (width and height):
+    */
+    function openWindow(url, width, height) {
+        const windowFeatures = `width=${width},height=${height}`;
+        window.open(url, '_blank', windowFeatures);
+    }
+
+    /*
+    b. opening a url with the above funciton
+    */
+
+    const url = 'https://www.example.com';
+    const width = 800;
+    const height = 600;
+    openWindow(url, width, height);
+</script>

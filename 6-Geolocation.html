@@ -1,0 +1,26 @@
+<h3>Getting user current location...</h3>
+
+<script>
+    /*
+    a. Implement a JavaScript function that retrieves the user's current location (latitude and longitude) using the geolocation API.
+    */
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    document.write(`Latitude: ${latitude}<br/>`);
+                    document.write(`Longitude: ${longitude}`);
+                },
+                function (error) {
+                    document.write(`Error retrieving location: ${error.message}`);
+                }
+            );
+        } else {
+            document.write('Geolocation is not supported by this browser.');
+        }
+    }
+
+    getCurrentLocation();
+</script>

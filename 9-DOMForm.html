@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Validation Example</title>
+        <style>
+            .error {
+                color: red;
+                margin-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Form Validation Example</h1>
+        <form id="myForm">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required />
+                <div class="error"></div>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required />
+                <div class="error"></div>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required />
+                <div class="error"></div>
+            </div>
+            <div>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" required />
+                <div class="error"></div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
+
+<script>
+    window.onload = function () {
+        const form = document.getElementById('myForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const errorMessages = document.getElementsByClassName('error');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            resetErrorMessages();
+
+            if (!validateName(nameInput.value)) {
+                showError(nameInput, 'Name should not be empty and should contain only letters.');
+            }
+
+            if (!validateEmail(emailInput.value)) {
+                showError(emailInput, 'Invalid email address.');
+            }
+
+            if (!validatePassword(passwordInput.value)) {
+                showError(
+                    passwordInput,
+                    'Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit.'
+                );
+            }
+
+            if (!validateConfirmPassword(passwordInput.value, confirmPasswordInput.value)) {
+                showError(confirmPasswordInput, 'Confirm password does not match the password.');
+            }
+        });
+
+        function validateName(name) {
+            return /^[A-Za-z]+$/.test(name);
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validatePassword(password) {
+            return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password);
+        }
+
+        function validateConfirmPassword(password, confirmPassword) {
+            return password === confirmPassword;
+        }
+
+        function showError(inputElement, errorMessage) {
+            inputElement.classList.add('error');
+            const errorElement = inputElement.nextElementSibling;
+            errorElement.textContent = errorMessage;
+        }
+
+        function resetErrorMessages() {
+            for (let i = 0; i < errorMessages.length; i++) {
+                const errorElement = errorMessages[i];
+                errorElement.textContent = '';
+                const inputElement = errorElement.previousElementSibling;
+                inputElement.classList.remove('error');
+            }
+        }
+    };
+</script>

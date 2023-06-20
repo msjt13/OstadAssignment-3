@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Common Events</title>
+    </head>
+    <body>
+        <h1>Common Events</h1>
+        <p>
+            Click anywhere on the page, press any key on the keyboard, or move the mouse over the image to trigger the
+            respective events.
+        </p>
+        <img id="myImage" src="./img_1.png" alt="Image" width="50%" />
+    </body>
+</html>
+
+<script>
+    window.onload = function () {
+        // a: Click event
+        document.addEventListener('click', function (event) {
+            const x = event.clientX;
+            const y = event.clientY;
+            alert(`Clicked at coordinates (X: ${x}, Y: ${y})`);
+        });
+
+        // b: Keydown event
+        document.addEventListener('keydown', function (event) {
+            const keyCode = event.keyCode || event.which;
+            alert(`Key pressed with key code: ${keyCode}`);
+        });
+
+        // c: Mouseover event
+        const image = document.getElementById('myImage');
+        image.addEventListener('mouseover', function () {
+            image.src = './img_2.jpeg';
+        });
+
+        image.addEventListener('mouseout', function () {
+            image.src = './img_1.png';
+        });
+    };
+</script>

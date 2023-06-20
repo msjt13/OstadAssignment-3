@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Change Attribute Value</title>
+    </head>
+    <body>
+        <img id="myImage" src="./img_1.png" alt="Initial Image" width="50%" />
+        <button id="changeButton">Change Image</button>
+    </body>
+</html>
+
+<script>
+    const changeButton = document.getElementById('changeButton');
+    const myImage = document.getElementById('myImage');
+
+    const images = ['./img_1.png', './img_2.jpeg', './img_3.jpg'];
+    let currentImageIndex = 0;
+
+    changeButton.addEventListener('click', function () {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        myImage.src = images[currentImageIndex];
+    });
+</script>
