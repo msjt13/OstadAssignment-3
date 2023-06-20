@@ -1,0 +1,24 @@
+<h3>Posting data ....</h3>
+
+<script src="./axios.min.js"></script>
+<script>
+    postData();
+
+    async function postData() {
+        const url = 'https://api.example.com/submit';
+        const data = {
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+        };
+
+        await axios
+            .post(url, data)
+            .then((response) => handleResponse(response.data))
+            .catch((error) => console.error('Error:', error));
+    }
+
+    // Callback function to handle the response
+    function handleResponse(response) {
+        console.log(response);
+    }
+</script>
